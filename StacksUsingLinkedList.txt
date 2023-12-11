@@ -1,0 +1,126 @@
+#include <iostream>
+using namespace std;
+#define s 5
+int top=-1;
+class node{
+    public:
+    int data;
+    node* next;
+    
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+    
+};
+void peek(node* &head)
+{
+    if(head==NULL)
+    {cout<<"EMPTY STACK\n";return;}
+    cout<<head->data<<endl;
+}
+void peep(node* &head)
+{
+    if(head==NULL)
+    {cout<<"EMPTY STACK\n";return;}
+    int pos,i=1;node *temp=head;
+    cout<<"Enter the index of Element : ";
+    cin>>pos;cout<<endl;
+    while(i!=3)
+    {
+        temp=temp->next;
+        i++;
+    }
+    cout<<"Element : "<<temp->data<<endl;
+}
+void insertFromTail(node* &head,int val)
+{
+    if(top==-1)
+    top=0;
+    if(top==s)
+    cout<<"STACK OVERFLOW\n";
+    else
+    {
+    node* n=new node(val);
+    if(head==NULL)
+    {
+        head=n;
+        head->next=NULL;
+        top++;
+        return;
+    }
+    node* temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=n;
+    top++;
+    }
+}
+void display(node *head)
+{
+    node* temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL"<<endl;
+}
+void deleteFromTail(node* &head)
+{
+    if(top==-1)
+    cout<<"EMPTY\n";
+    if(head==NULL)
+    cout<<"UNDERFLOW\n";
+    else
+    {
+    node* temp=head;
+    if(head->next==NULL)
+    {
+        node* n=head;
+        cout<<"Deleted : "<<head->data<<endl;
+        head=head->next;
+        delete n;
+        top--;
+        return;
+    }
+    top--;
+    while(temp->next->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    node* n=temp->next;
+    cout<<"Deleted : "<<temp->next->data<<endl;
+    temp->next=temp->next->next;
+    delete n;
+    }
+}
+
+int main()
+{
+    
+    node* head=NULL;
+    int a=1,b,x;
+    while(a!=0)
+    {
+        cout<<"1.Push\t\t\t2.Pop\n3.Display\t\t4.Peek\n5.Peep\t\t\t6.exit\n";
+        cout<<"Enter Your Choice : ";
+        cin>>b;
+        switch(b)
+        {
+            case 1:cout<<"Enter Element : ";
+                cin>>x;
+                cout<<endl;
+                insertFromTail(head,x);break;
+            case 2:deleteFromTail(head);break;    
+            case 3:display(head);break;
+            case 4:peek(head);break;
+            case 5:peep(head);break;
+            case 6:cout<<"SERVICES ARE CLOSED\n";exit(0);
+            default:cout<<"Invalid Choice\n";break;
+        }
+    }
+}

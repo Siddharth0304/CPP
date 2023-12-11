@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+#define s 5
+int front=-1,rear=-1;
+class node{
+    public:
+    node* next;
+    int data;
+    node(int val)
+    {
+        next=NULL;
+        data=val;
+    }
+};
+void insertFromTail(node* &head,int val)
+{
+    if(rear==-1)
+    rear=0;
+    if(rear==s)
+    cout<<"Overflow\n";
+    else
+    {
+    node* n=new node(val);
+    rear++;
+    if(head==NULL)
+    {
+        head=n;
+        head->next=NULL;
+        return;
+    }
+    node *temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=n;
+    }
+    
+}
+void deleteFromHead(node* &head)
+{
+    if(front==-1)
+    front=0;
+    if(rear==-1)
+    {cout<<"Queue is EMPTY\n";return;}
+    if(head==NULL)
+    cout<<"Underflow\n";
+    else
+    {
+    front++;
+    node *m=head;
+    head=head->next;
+    delete m;
+    }
+    
+}
+void display(node *&head)
+{
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL\n";
+}
+int main()
+{
+    node *head=NULL;
+    int b,x;
+    do{
+        cout<<"1.Enqueue\t\t2.Dequeue\n3.Display\t\t4.Exit\nENTER YOUR CHOICE\n";
+        cin>>b;
+        switch(b)
+        {
+            case 1:cout<<"Enter value to Enqueue : ";
+                    cin>>x;
+                    insertFromTail(head,x);break;
+            case 2:deleteFromHead(head);break;
+            case 3:display(head);break;
+            case 4:"EXIT\n";break;
+            default:cout<<"Invalid Choice\n";
+        }
+    }
+    while(b!=4);
+}

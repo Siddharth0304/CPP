@@ -1,0 +1,67 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    node* left;
+    node* right;
+    int data;
+    node(int val)
+    {
+        left=NULL;
+        right=NULL;
+        data=val;
+    }
+};
+int search(int in[],int curr,int start,int end)
+{
+    
+    for(int i=start;i<=end;i++)
+    {
+        if(in[i]==curr)
+        return i;
+        
+    }
+}
+node* build(int pre[],int in[],int start,int end)
+{
+    static int idx=0;
+    if(start>end)
+    return NULL;
+    int curr=pre[idx];
+    idx++;
+    node* no=new node(curr);
+    if(start==end)
+    {
+        return no;
+    }
+    int pos=search(in,curr,start,end);
+    no->left=build(pre,in,start,pos-1);
+    no->right=build(pre,in,pos+1,end);
+    return no;
+}
+void inorder(node* &root)
+{
+    if(root)
+    {
+        inorder(root->left);
+        cout<<root->data<<" ";
+        inorder(root->right);
+    }
+}
+int main() {
+    int n;
+    cout<<"Enter number of elements in tree : ";
+    cin>>n;
+    int pre[n],in[n];
+    cout<<"Enter elements in preorder format : ";
+    for(int i=0;i<n;i++)
+    cin>>pre[i];
+    cout<<"Enter elements in inorder format : ";
+    for(int i=0;i<n;i++)
+    cin>>in[i];
+    node* root=build(pre,in,0,n-1);
+    inorder(root);
+
+    return 0;
+}

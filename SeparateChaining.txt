@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define s 7
+struct node{
+    struct node* next;
+    int data;
+};
+struct node* chain[s];
+struct node* getnode(int val){
+    struct node* p=(struct node*)malloc(sizeof(struct node));
+    p->data=val;
+    p->next=NULL;
+    return p;
+}
+void init(){
+    for(int i=0;i<s;i++)
+        chain[i]=NULL;
+}
+void insert(int val){
+    struct node* n=getnode(val);
+    int key=val%s;
+    if(chain[key]==NULL){
+        chain[key]=n;
+        return;
+    }
+    else
+    {
+        struct node* temp=chain[key];
+        while(temp->next)
+            temp=temp->next;
+        temp->next=n;
+    }
+}
+void print(){
+    for(int i=0;i<s;i++){
+        struct node* temp=chain[i];
+        printf("chain[%d]->",i);
+        while(temp){
+            printf("%d->",temp->data);
+            temp=temp->next;
+        }
+        printf("NULL\n");
+    }
+}
+int main(){
+    init();
+    
+    insert(7);
+    insert(0);
+    insert(3);
+    insert(10);
+    insert(4);
+    insert(5);
+
+    print();
+
+}

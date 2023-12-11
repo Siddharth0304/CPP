@@ -1,0 +1,44 @@
+#include <string.h>
+#include <stdio.h>
+struct Employee
+{
+    char name[40];
+    int empid;
+    char gender[15];
+    float salary;
+}temp;
+int main()
+{
+    int n,i,j;
+    
+    printf("Enter the number of Employees\n");
+    scanf("%d",&n);
+    struct Employee e1[n];
+    printf("Enter Name,EmpID,Gender and Salary of all Employees\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%s %d %s %f",e1[i].name,&e1[i].empid,e1[i].gender,&e1[i].salary);
+    }
+    for(i=0;i<n;i++)
+    {
+        
+        for(j=i+1;j<n;j++)
+        {
+            if(e1[i].salary<e1[j].salary)
+            {
+                temp=e1[i];
+		        e1[i]=e1[j];
+	            e1[j]=temp;
+            }
+        }
+        
+    }
+    printf("Record in Descending order of Salaries\n");
+    
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t\t%s\t\t%d\t\t%s\t\t%.2f\t\t",i+1,e1[i].name,e1[i].empid,e1[i].gender,e1[i].salary);
+        printf("\n");
+    }
+    
+}

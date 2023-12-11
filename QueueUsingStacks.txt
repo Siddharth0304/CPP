@@ -1,0 +1,47 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <stack>
+using namespace std;
+class queue{
+    stack<int> s1;
+    stack<int> s2;
+    public:
+        void push(int x){
+            s1.push(x);
+        }
+        void popp(){
+            if(s1.empty() && s2.empty()){
+                cout<<"Empty\n";return;}
+            if(!s1.empty()){
+                while(!s1.empty()){
+                    s2.push(s1.top());
+                    s1.pop();
+                }
+            }
+            if(!s2.empty()){
+                int m=s2.top();
+                s2.pop();
+                cout<<m<<endl;
+            }
+        }
+};
+int main() {
+    queue q;
+    int a,b;
+    do{
+        cout<<"1.Push\t2.Pop\t3.Exit\nEnter Choice : ";
+        cin>>a;
+        switch(a){
+            case 1:cout<<"Enter Element : ";
+                    cin>>b;
+                    q.push(b);break;
+            case 2:cout<<"Popped Element : ";
+                        q.popp();
+                        break;
+            case 3:cout<<"Exiting\n";break;
+            default:cout<<"Wrong Choice\n";break;
+        }
+    }
+    while(a!=3);
+    return 0;
+}

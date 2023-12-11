@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+   
+
+    int i,j;
+    
+    char arr[1000];
+    scanf("%[^\n]%*c", arr);
+    
+    
+    
+        for(i=0;i<1000;i++)
+        {
+             if(arr[i]=='\0')
+            {
+                break;
+            }
+            if(' '==arr[i])
+            {
+                printf("\n");
+            }
+            else {
+            printf("%c",arr[i]);
+            }
+           
+        }
+        
+    
+    
+    return 0;
+}

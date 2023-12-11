@@ -1,0 +1,40 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+    int i,x=0,y=0,z=0,a=0;    
+    char arr[1000];
+    printf("Enter a String\n");
+    scanf("%[^\n]s",arr);
+    for(i=0;arr[i]!='\0';i++)
+    {
+        if(arr[i]==' ' && arr[i+1] !=' ')
+        {
+            x++;
+        }
+        if(isdigit(arr[i]))
+        {
+            y++;
+        }
+        if(isalpha(arr[i]))
+        {
+            z++;
+        }
+        if(arr[i]=='a' || arr[i]=='A' || arr[i]=='e' || arr[i]=='E' || arr[i]=='i' || arr[i]=='I' || arr[i]=='o' || arr[i]=='O' || arr[i]=='u' || arr[i]=='U')
+        {
+            a++;
+        }
+       
+    }
+    printf("The Number of Words are %d.\nThe Number of Alphabets are %d.\nThe Number of Vowels are %d.\nThe Number of Digits are %d.\n",x+1,z,a,y);
+    return 0;
+}

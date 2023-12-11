@@ -1,0 +1,68 @@
+#include <iostream>
+#define m 5
+using namespace std;
+int top=-1;
+int stack[m];
+void push(int x)
+{
+    top++;
+    if(top==m){
+        cout<<"Stack Overflow\n";
+        return;
+    }
+    stack[top]=x;
+    
+}
+void pop()
+{
+    
+    if(top==-1){
+        cout<<"Stack Underflow\n";
+        return;
+    }
+    cout<<"Deleted Element : "<<stack[top]<<endl;
+    stack[top]=0;
+    top--;
+    
+}
+void t()
+{
+    if(top==-1)
+    {
+        cout<<"Empty Stack\n";
+        return;
+    }
+    cout<<stack[top]<<endl;
+}
+void display()
+{
+    if(top==-1)
+    {
+        cout<<"Empty Stack\n";
+        return;
+    }
+    for(int i=0;i<=top;i++)
+        cout<<stack[i]<<" ";
+    cout<<endl;
+}
+int main() {
+    int a,b,x;
+    do{
+        cout<<"1.Push\t\t2.Pop\n3.Top\t\t4.Display\n5.Exit\nEnter Your Choice : ";
+        cin>>a;
+        switch(a){
+            case 1:cout<<"Enter Element : ";
+                    cin>>x;
+                    push(x);break;
+            case 2:pop();break;
+            case 3:t();break;
+            case 4:display();break;
+            case 5:cout<<"Aborted\n";
+            default:cout<<"Wrong Choice\n";
+        }
+        
+    }
+    while(a!=5);
+
+    return 0;
+}

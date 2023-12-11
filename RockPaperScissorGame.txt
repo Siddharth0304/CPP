@@ -1,0 +1,55 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    cout<<"WELCOME TO THE ROCK PAPER SCISSORS GAME!!\n";
+    vector<string> v={"rock","paper","scissor"};
+    string s;
+    int c=0,p=0;
+    while(true){
+        cout<<"\nEnter your choice : ";
+        cin>>s;
+        cout<<"\n";
+        transform(s.begin(), s.end(), s.begin(), ::tolower);
+        int x=rand()%3;
+        if(v[x]=="rock" && s=="paper"){
+            cout<<"Computer chose "<<v[x]<<" and PLAYER Wins\n\n";
+            p++;
+        }
+        else if(v[x]=="paper" && s=="rock"){
+            cout<<"Computer chose "<<v[x]<<" and Wins\n\n";
+            c++;
+        }
+        else if(v[x]=="rock" && s=="rock")
+            cout<<"Both chose the same thing :)\n\n";
+        else if(v[x]=="rock" && s=="scissor"){
+            cout<<"Computer chose "<<v[x]<<" and Wins\n\n";
+            c++;
+        }
+        else if(v[x]=="paper" && s=="paper")
+            cout<<"Both chose the same thing :)\n\n";
+        else if(v[x]=="paper" && s=="scissor"){
+            cout<<"Computer chose "<<v[x]<<" and PLAYER Wins\n\n";
+            p++;
+        }
+        else if(v[x]=="scissor" && s=="paper"){
+            cout<<"Computer chose "<<v[x]<<" and Wins\n\n";
+            c++;
+        }
+        else if(v[x]=="scissor" && s=="rock"){
+            cout<<"Computer chose "<<v[x]<<" and PLAYER Wins\n\n";
+            p++;
+        }
+        else if(v[x]=="scissor" && s=="scissor")
+            cout<<"Both chose the same thing :)\n\n";
+        cout<<"\n1->Play again\t2->Exit\n";
+        cout<<"Enter Choice : ";
+        int b;
+        cin>>b;
+        if(b==2)
+            break;
+    }
+    cout<<"Final Scores :\nCOMPUTER\tPLAYER\n   "<<c<<"\t\t   "<<p<<endl;
+    cout<<"THANK YOU\n";
+    return 0;
+}

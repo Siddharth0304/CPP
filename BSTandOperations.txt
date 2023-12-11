@@ -1,0 +1,144 @@
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    node* left;
+    node* right;
+    int data;
+    node(int val)
+    {
+        left=NULL;
+        right=NULL;
+        data=val;
+    }
+};
+bool search(node* &root,int val)
+{
+    if(root)
+    {
+        if(val==root->data)
+            return 1;
+        if(val<root->data)
+            search(root->left,val);
+        else
+            search(root->right,val);
+    }
+    else
+        return 0;
+}
+int min(node* &root)
+{
+    if(root->left)
+        min(root->left);
+    else
+        return root->data;
+}
+int max(node* &root)
+{
+    if(root->right)
+        max(root->right);
+    else
+        return root->data;
+}
+void inorder(node* &root)
+{
+    if(root)
+    {
+        inorder(root->left);
+        cout<<root->data<<" ";
+        inorder(root->right);
+    }
+}
+node* insert(node* &root,int val)
+{
+    if(root==NULL)
+        return new node(val);
+    if(val<root->data)
+        root->left=insert(root->left,val);
+    else
+        root->right=insert(root->right,val);
+    return root;
+}
+node* inorderPre(node* &root)
+{
+    node* cur=root;
+    while(cur && cur->right!=NULL)
+    {
+        cur=cur->right;
+    }
+    return cur;
+}
+node* deleteBST(node* &root,int val)
+{
+    if(val<root->data)
+        root->left=deleteBST(root->left,val);
+    else if(val>root->data)
+        root->right=deleteBST(root->right,val);
+    else
+    {
+        if(root->left==NULL)
+        {
+            node* temp=root->right;
+            free(root);
+            return temp;
+        }
+        else if(root->right==NULL)
+        {
+            node* temp=root->left;
+            free(root);
+            return temp;
+        }
+        node* temp=inorderPre(root->left);
+        root->data=temp->data;
+        root->left=deleteBST(root->left,temp->data);
+    }
+    return root;
+}
+bool isBalanced(node* &root,int *height)
+{
+    if(root==NULL)
+        return true;
+    int lh=0,rh=0;
+    if(isBalanced(root->left,&lh)==false)
+        return false;
+    if(isBalanced(root->right,&rh)==false)
+        return false;
+    *height=max(lh,rh)+1;
+    if(abs(lh-rh)<=1)
+        return true;
+    else
+        return false;
+}
+int main() {
+    int key;int height=0;
+    node* root=NULL;
+    root=insert(root,5);
+    insert(root,3);
+    insert(root,1);
+    insert(root,4);
+    insert(root,25);
+    insert(root,11);
+    insert(root,23);
+    insert(root,21);
+    insert(root,55);
+    insert(root,41);
+    inorder(root);
+    cout<<endl;
+    cout<<"Minimum element : "<<min(root)<<endl;
+    cout<<"Maximum element : "<<max(root)<<endl;
+    cout<<"Enter element to search : ";
+    cin>>key;
+    if(search(root,key))
+        cout<<key<<" is found\n";
+    else
+        cout<<key<<" is not found\n";
+    cout<<"Enter element to be deleted : ";
+    cin>>key;
+    deleteBST(root,key);
+    inorder(root);
+    if(isBalanced(root,&height))
+        printf("balanced\n");
+    else
+        printf("Imbalanced\n");
+    return 0;
+}

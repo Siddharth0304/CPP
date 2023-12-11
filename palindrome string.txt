@@ -1,0 +1,36 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,i;
+    cin>>n;
+    char arr[n+1];
+    cin>>arr;
+    bool check=1;
+    for(i=0;i<n;i++)
+    {
+        if(arr[i] != arr[n-1-i])
+        {
+            check=0;
+            break;
+        }
+    }
+    if(check== true)
+    {
+        cout<<"yes";
+    }
+    else
+    cout<<"NO";
+
+    return 0;
+}

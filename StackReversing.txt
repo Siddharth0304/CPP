@@ -1,0 +1,32 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <stack>
+using namespace std;
+void reverse(stack<int> &st){
+    
+    if(!st.empty()){
+        int m=st.top();
+        st.pop();
+        reverse(st);
+        st.push(m);
+    }
+    
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+}
+int main() {
+    stack<int> st;
+    int n,a;
+    cout<<"Enter Number of Elements : ";
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cout<<"Enter Element : ";
+        cin>>a;
+        st.push(a);
+    }
+    cout<<"Reverse Stack is : ";
+    reverse(st);
+    cout<<"\n";
+}

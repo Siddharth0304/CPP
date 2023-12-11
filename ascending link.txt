@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+    
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+void insert(node* &head,int val)
+{
+    node* pre=NULL;
+    node* n=new node(val);
+    if(head==NULL)
+    {
+        n->next=head;
+        head=n;
+        return;
+    }
+    node *temp=head;
+    if(val<temp->data && temp==head)
+    {
+        n->next=head;
+        head=n;
+        return;
+    }
+    while(temp!=NULL)
+    {
+        if(val<temp->data)
+        {
+            pre->next=n;
+            n->next=temp;
+        }
+        else
+        {
+            pre=temp;
+            temp=temp->next;
+        }
+    }
+}
+void 
+int main()
+{
+    
+    node* head=NULL;
+    int b,x;
+    do
+    {
+        cout<<"1.Insert\t2.DeleteFromHead\n3.DeleteFromTail\t\t4.Display\n6.exit\n";
+        cout<<"Enter Your Choice : ";
+        cin>>b;
+        switch(b)
+        {
+            case 1:cout<<"Enter Element : ";
+                   cin>>x;
+                   insert(head,x);break;
+            case 2:deleteFromHead(head);break;    
+            case 3:deleteFromTail(head);break;
+            case 4:display(head);break;
+            case 5:cout<<"SERVICES ARE CLOSED\n";break;
+            default:cout<<"Invalid Choice\n";break;
+        }
+    }
+    while(b!=5);
+}

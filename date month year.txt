@@ -1,0 +1,211 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+struct Clock
+{
+    int date;
+    int month;
+    int year;
+}c1;
+int main()
+{
+    printf("Enter the Date Month and Year\n");
+    scanf("%d %d %d",&c1.date,&c1.month,&c1.year);
+    switch(c1.month)
+    {
+        case 1: if(c1.date>31)
+                {
+                    printf("January has only 31 days\n");
+                    break;
+                }
+                c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=2;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                
+                break;
+        case 2:if(c1.year%4==0 && c1.year%100!=0)
+        {
+        if(c1.date>29)
+                {
+                    printf("February has only 29 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==30)
+                {
+                    c1.month=3;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+        }
+        else
+        {
+            if(c1.date>28)
+                {
+                    printf("February has only 28 days\n");
+                    break;
+                }
+                c1.date++;
+                if(c1.date==29)
+                {
+                    c1.month=3;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+        }
+        
+       
+                break;
+        case 3:if(c1.date>31)
+                {
+                    printf("March has only 31 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=4;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                break;
+        case 4:if(c1.date>30)
+                {
+                    printf("April has only 30 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==31)
+                {
+                    c1.month=5;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                
+                break;
+        case 5:if(c1.date>31)
+                {
+                    printf("May has only 31 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=6;
+                     c1.date=1;
+                     printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                
+               break;
+        case 6:if(c1.date>30)
+                {
+                    printf("June has only 30 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==31)
+                {
+                    c1.month=7;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+               
+                break;
+        case 7:if(c1.date>31)
+                {
+                    printf("July has only 31 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=8;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                
+                break;
+        case 8:if(c1.date>31)
+                {
+                    printf("August has only 31 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=9;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                break;
+        case 9:if(c1.date>30)
+                {
+                    printf("September has only 30 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==31)
+                {
+                    c1.month=10;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                break;
+        case 10:if(c1.date>31)
+                {
+                    printf("October has only 31 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=11;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                break;
+        case 11:if(c1.date>30)
+                {
+                    printf("November has only 30 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==31)
+                {
+                    c1.month=12;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+                break;
+        case 12:if(c1.date>31)
+                {
+                    printf("December has only 31 days\n");
+                    break;
+                }
+        c1.date++;
+                if(c1.date==32)
+                {
+                    c1.month=1;
+                    c1.year++;
+                    c1.date=1;
+                    printf("The Date Month and year is\n%d/ %d/ %d",c1.date,c1.month,c1.year);
+                }
+               break;
+        default:("Wrong Month input\n");break;        
+                
+        
+    }
+     
+    return 0;
+}

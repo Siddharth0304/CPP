@@ -1,0 +1,34 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <stack>
+#include <cmath>
+using namespace std;
+int main() {
+    stack<int> st;
+    int n,a;
+    string s;
+    cout<<"Enter Prefix : ";
+    getline(cin,s);
+    for(int i=s.length()-1;i>=0;i--){
+        if(isdigit(s[i])){
+            int p=(int)s[i]-48;
+            st.push(p);
+        }
+        else{
+            int fir=st.top();
+            st.pop();
+            int sec=st.top();
+            st.pop();
+            switch(s[i]){
+                case '+':st.push(fir+sec);break;
+                case '-':st.push(fir-sec);break;
+                case '*':st.push(fir*sec);break;
+                case '/':st.push(fir/sec);break;
+                case '%':st.push(fir%sec);break;
+                case '^':st.push(pow(fir,sec));break;
+            }
+        }
+    }
+    cout<<"Postfix evaluation : "<<st.top()<<endl;
+    
+}

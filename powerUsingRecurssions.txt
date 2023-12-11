@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int powr(int b,int p)
+{
+    int s=1;
+    if(p<1)
+        return s;
+    else
+        s=b*powr(b,p-1);
+}
+int main()
+{
+    int base,power;
+    cin>>base>>power;
+    cout<<powr(base,power)<<endl;
+    return 0;
+}

@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main()
+{
+    int arr[20],i,x=0,y=0,p,z;
+    printf("Enter the values\n");
+    for(i=0;i<20;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    for(i=0;i<20;i++)
+    {
+        if(arr[i]<arr[i+1])
+        {
+            p=i;
+        }
+        else
+        {
+            p=i;
+            break;
+        }
+    }
+    for(i=p;i<20;i++)
+    {
+        if(arr[i]==arr[i+1])
+        {
+            x++;
+            z=i;
+        }
+        else
+        {
+            z=i;
+            break;
+        }
+    }
+    for(i=z;i<20;i++)
+    {
+        if(arr[i]>arr[i+1])
+        {
+            y++;
+        }
+        else
+        {
+            break;
+        }
+    }
+    if((20-(x+y)==p))
+    printf("yes\n");
+    else 
+    printf("No\n");
+
+    return 0;
+}

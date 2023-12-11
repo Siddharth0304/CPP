@@ -1,0 +1,163 @@
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+void insertFromHead(node* &head,int val)
+{
+    node *n=new node(val);
+    n->next=head;
+    head=n;
+}
+void insertFromTail(node* &head,int val)
+{
+    node* n=new node(val);
+    if(head==NULL)
+    {
+        head=n;
+        head->next=NULL;
+        return;
+    }
+    node* temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=n;
+}
+void deleteFromHead(node *&head)
+{
+   
+    node* m=head;
+    head=head->next;
+    delete m;
+    
+}
+void search(node *head,int val)
+{
+    node* temp=head;int y=0;
+    while(temp!=NULL)
+    {
+        if(temp->data==val)
+        {cout<<val<<" is Found\n";y=1;}
+        temp=temp->next;
+    }
+    if(y==0)
+    cout<<val<<" is not Found\n";
+}
+void display(node *head)
+{
+    node* temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL"<<endl;
+}
+void dele(node* &head,int val)
+{
+    node* temp=head;
+    while(temp->next->data!=val)
+    {
+        temp=temp->next;
+    }
+    node *del=temp->next;
+    temp->next=temp->next->next;
+    delete del;
+}
+void deleteFromTail(node* &head)
+{
+    node* temp=head;
+    while(temp->next->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    node* n=temp->next;
+    temp->next=temp->next->next;
+    delete n;
+    
+}
+int len(node* &head)
+{
+    int c=0;
+    node* temp=head;
+    while(temp!=NULL)
+    {
+        temp=temp->next;
+        c++;
+    }
+    return c;
+}
+void kappend(node* &head,int k)
+{
+    int l=len(head);
+    int count=1;
+    node *temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=head;
+    temp=head;
+    while(count<(l-k))
+    {
+        temp=temp->next;
+        count++;
+    }
+    head=temp->next;
+    temp->next=NULL;
+    display(head);
+}
+int main()
+{
+    node* head=NULL;
+    int a=1,b,x;
+    do
+    {
+        cout<<"1.InsertFromHead\t2.InsertFromTail\n3.DeleteFromHead\t4.Display\n5.Search\t\t\t6.DeleteSpecificElement\n7.DeleteFromTAil\t8.Append\n9.Length\t\t\t10.Exit\n";
+        cout<<"Enter Your Choice : ";
+        cin>>b;
+        switch(b)
+        {
+            case 1:cout<<"Enter Element : ";
+                    cin>>x;
+                    cout<<endl;
+                    insertFromHead(head,x);break;
+            case 2:cout<<"Enter Element : ";
+                    cin>>x;
+                    cout<<endl;
+                    insertFromTail(head,x);break;
+            case 3:deleteFromHead(head);break;
+            case 4:display(head);break;
+            case 5:cout<<"Enter the element to be searched : ";
+                            int z;
+                            cin>>z;
+                            cout<<endl;
+                            search(head,z);break;
+            case 6:cout<<"Enter element to be deleted : ";
+                            cin>>x;
+                            cout<<endl;
+                            dele(head,x);break;
+            case 7:deleteFromTail(head);break;
+            case 8: int y;cout<<"Enter no. of last nodes : ";cin>>y;
+                    kappend(head,y);break;
+            case 9:len(head);break;
+            case 10:cout<<"exit\n";break;
+            default:cout<<"Invalid Choice\n";break;
+        }
+        
+    }
+    while(b!=10);
+    
+    
+}
+    
+    

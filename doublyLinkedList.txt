@@ -1,0 +1,87 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    node* prev;
+    node *next;
+    int data;
+    node(int val)
+    {
+        next=NULL;
+        prev=NULL;
+        data=val;
+    }
+};
+void insertFromHead(node* &head,int val)
+{
+    node* n=new node(val);
+    n->next=head;
+    head->prev=n;
+    head=n;
+}
+void insertFromTail(node* &head,int val)
+{
+    node *n=new node(val);
+    if(head==NULL)
+    {
+        insertFromHead(head,val);
+        return;
+    }
+    node* temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=n;
+    n->next=NULL;
+    n->prev=temp;
+}
+void display(node* &head)
+{
+    node* temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+}
+int main()
+{
+    node* head=NULL;
+    int a=1,b,x;
+    while(a!=0)
+    {
+        cout<<"1.InsertFromHead\t2.InsertFromTail\n3.DeleteFromHead\t4.Display\n5.Search\t\t\t6.DeleteSpecificElement\n7.DeleteFromTAil\n";
+        cout<<"Enter Your Choice : ";
+        cin>>b;
+        switch(b)
+        {
+            case 1:cout<<"Enter Element : ";
+                    cin>>x;
+                    cout<<endl;
+                    insertFromHead(head,x);break;
+            case 2:cout<<"Enter Element : ";
+                    cin>>x;
+                    cout<<endl;
+                    insertFromTail(head,x);break;
+            //case 3:deleteFromHead(head);break;
+            case 4:display(head);break;
+           /* case 5:cout<<"Enter the element to be searched : ";
+                            int z;
+                            cin>>z;
+                            cout<<endl;
+                            search(head,z);break;
+            case 6:cout<<"Enter element to be deleted : ";
+                            cin>>x;
+                            cout<<endl;
+                            dele(head,x);break;
+            case 7:deleteFromTail(head);break;
+            default:cout<<"Invalid Choice\n";break;*/
+        }
+        cout<<"To continue Enter '1' else Enter '0'\n";
+        cin>>a;
+    }
+    
+    
+}

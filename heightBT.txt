@@ -1,0 +1,34 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    node* left;
+    node* right;
+    int data;
+    node(int val)
+    {
+        left=NULL;
+        right=NULL;
+        data=val;
+    }
+};
+int heght(node* &root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int lheight=heght(root->left);
+    int rheight=heght(root->right);
+    return (max(lheight,rheight)+1);
+}
+int main() {
+    node *root=new node(1);
+    root->left=new node(2);
+    root->right=new node(3);
+    root->left->left=new node(4);
+    cout<<heght(root);
+
+    return 0;
+}

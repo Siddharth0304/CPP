@@ -1,0 +1,154 @@
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    node* next;
+    int data;
+    node(int val)
+    {
+        next=NULL;
+        data=val;
+    }
+};
+node* tail(node* &head)
+{
+    node* temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    return temp;
+}
+void insertAtTail(node* &head,int val)
+{
+    node *n=new node(val);
+    if(head==NULL)
+    {
+        n->next=head;
+        head=n;
+        return;
+    }
+    node *temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=n;
+    n->next=NULL;
+}
+void deleteFromTail(node* &head)
+{
+    node *temp=head;
+    while(temp->next->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    node *n=temp->next;
+    temp->next->next=NULL;
+    cout<<"Deleted : "<<n->data<<endl;
+    delete n;
+    
+}
+void display(node* &head)
+{
+    node* temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL\n";
+}
+int main() {
+    int a,b,y,k,l;
+    node *head1=NULL;
+    node *head2=NULL;
+    node *head3=NULL;
+    do{
+        cout<<"1.Linked list I\t\t2.Linked list II\n3.MergeTwoLists\t\t4.Exit\n";
+        cout<<"Enter choice : ";
+        cin>>a;
+        if(a==1)
+        {
+            do{
+            cout<<"1.InsertAtTail\t2.DeleteAtTail\n3.Display\t\t4.Exit\n";
+            cout<<"Enter choice : ";
+            cin>>b;
+            switch(b)
+            {
+                case 1: cout<<"Enter element : ";
+                        cin>>y;
+                        insertAtTail(head1,y);break;
+                case 2: deleteFromTail(head1);break;
+                case 3: display(head1);break;
+                case 4: cout<<"Exiting Linked list I\n";break;
+                default:cout<<"No such option\n";break;
+            }
+            }
+            while(b!=4);
+            
+        }
+        else if(a==2)
+        {
+            do{
+            cout<<"1.InsertAtTail\t2.DeleteAtTail\n3.Display\t\t4.Exit\n";
+            cout<<"Enter choice : ";
+            cin>>b;
+            switch(b)
+            {
+                case 1: cout<<"Enter element : ";
+                        cin>>y;
+                        insertAtTail(head2,y);break;
+                case 2: deleteFromTail(head2);break;
+                case 3: display(head2);break;
+                case 4: cout<<"Exiting Linked list II\n";break;
+                default:cout<<"No such option\n";break;
+            }
+            }
+            while(b!=4);
+            
+        }
+        else if(a==3)
+        {
+            node *p1=head1,*p2=head2;
+            while(p1!=NULL && p2!=NULL)
+            {
+                if(p1->data<p2->data)
+                {
+                    insertAtTail(head3,p1->data);
+                    p1=p1->next;
+                }
+                else
+                {
+                    insertAtTail(head3,p2->data);
+                    p2=p2->next;
+                }
+            }
+            if(p1==NULL)
+            {
+                while(p2!=NULL)
+                {
+                    insertAtTail(head3,p2->data);
+                    p2=p2->next;
+                }
+            
+            }
+            if(p2==NULL)
+            {
+                while(p1!=NULL)
+                {
+                    insertAtTail(head3,p1->data);
+                    p1=p1->next;
+                }
+            
+            }
+            display(head3);
+        }
+        
+    }
+    while(a!=4);
+    cout<<"Aborted\n";
+    
+
+    return 0;
+}
